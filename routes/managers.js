@@ -15,7 +15,11 @@ router.get('/', (req, res) => {
       return res.status(500).json({ message: 'Internal server error' });
     }
 
-    res.json(rows);
+    // Simulate a random delay between 500ms and 3000ms
+    const delay = Math.random() * (3000 - 500) + 500;
+    setTimeout(() => {
+      res.json(rows);
+    }, delay);
   });
 });
 

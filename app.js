@@ -13,5 +13,6 @@ app.use('/api/login', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/managers', managerRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+

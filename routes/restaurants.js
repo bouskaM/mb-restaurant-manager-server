@@ -4,8 +4,18 @@ const router = express.Router();
 
 const db = new sqlite3.Database('data.db');
 
-// GET /api/restaurants (set in app.js)– returns ALL restaurants at once
+/**
+ * Toggle this to true to simulate 401 Unauthorized responses for testing.
+ */
+const TEST_UNAUTHORIZED = false;
+
+// GET /api/restaurants – returns ALL restaurants at once
 router.get('/', (req, res) => {
+  // Simulate unauthorized access
+  if (TEST_UNAUTHORIZED) {
+    return res.status(401).json({ message: 'Unauthorized (simulated)' });
+  }
+
   const query = `
     SELECT id, managerId, address, inProduction
     FROM restaurants
